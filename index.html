@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken &? - Menu & Specials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+        }
+        
+        .menu-category {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item {
+            transition: all 0.2s ease;
+            background-color: #1a1a1a;
+            border-color: #333333;
+        }
+        
+        .menu-item:hover {
+            background-color: #2a2a2a;
+        }
+        
+        .promo-card {
+            transition: all 0.3s ease;
+            background-color: #1a1a1a;
+        }
+        
+        .promo-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .student-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Dark Mode Adjustments */
+        .text-gray-600 { color: #a0a0a0 !important; }
+        .text-gray-800 { color: #d1d1d1 !important; }
+        .bg-gray-100 { background-color: #333333 !important; }
+        .bg-gray-200 { background-color: #2a2a2a !important; }
+        .bg-white { background-color: #1a1a1a !important; }
+        .border-gray-200 { border-color: #333333 !important; }
+        .text-gray-400 { color: #777777 !important; }
+
+        /* Scrollbar Hide */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Floating Cart Badge */
+        .floating-cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            color: red;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+<!-- Header -->
+<header class="hero-gradient text-white shadow-lg">
+    <div class="container mx-auto px-4 py-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <h1 class="text-3xl font-bold">CHICKEN &?</h1>
+            </div>
+            <button onclick="openCart()" class="md:hidden flex items-center bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition">
+                <i class="fas fa-shopping-cart mr-2"></i> Cart (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Banner -->
+<div class="relative bg-black overflow-hidden">
+    <img src="feast.jpg" alt="Delicious chicken meal" class="w-full h-64 object-cover opacity-70">
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">CHICKEN&?</h2>
+            <p class="text-xl text-white mb-6">Discover your perfect meal combo today!</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#promos" class="px-6 py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition">
+                    <i class="fas fa-tag mr-2"></i>View Promos
+                </a>
+                <a href="#menu" class="px-6 py-3 bg-white text-red-600 rounded-full font-semibold hover:bg-gray-100 transition">
+                    <i class="fas fa-utensils mr-2"></i>Full Menu
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Promos Section -->
+<section id="promos" class="py-12 bg-black">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-2 text-red-600">SPECIALS & PROMOS</h2>
+        <p class="text-center text-gray-600 mb-8">Limited time offers curated for you</p>
+        
+        <!-- Student Special -->
+        <div class="mb-12">
+            <div class="flex items-center mb-4">
+                <h3 class="text-2xl font-semibold text-white">Student Favorites</h3>
+                <span class="ml-3 px-3 py-1 bg-yellow-400 text-black rounded-full text-xs font-bold student-badge">
+                    <i class="fas fa-graduation-cap mr-1"></i>STUDENT SPECIAL
+                </span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Promo 1 -->
+                <div class="promo-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative">
+                        <img src="chips-bun.jpg" alt="Chicken & Chips Combo" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            -25%
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2 text-white">Campus Combo</h4>
+                        <p class="text-gray-600 mb-4">1/4 Chicken + Chips + bun</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through mr-2">R69</span>
+                                <span class="text-red-600 font-bold text-xl">R52</span>
+                            </div>
+                            <button class="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Promo 2 -->
+                <div class="promo-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative">
+                        <img src="burger-chips-drink.avif" alt="Burger Meal" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            STUDENT
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2 text-white">Roomie Special</h4>
+                        <p class="text-gray-600 mb-4">2 Burgers + 2 Chips + 2 Drinks</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through mr-2">R120</span>
+                                <span class="text-red-600 font-bold text-xl">R99</span>
+                            </div>
+                            <button class="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Promo 3 -->
+                <div class="promo-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative">
+                        <img src="slush.webp" alt="Slushie" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            NEW
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2 text-white">Cool Down</h4>
+                        <p class="text-gray-600 mb-4">2 Large Slushies (Any Flavor)</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through mr-2">R50</span>
+                                <span class="text-red-600 font-bold text-xl">R35</span>
+                            </div>
+                            <button class="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Budget Specials -->
+        <div>
+            <div class="flex items-center mb-4">
+                <h3 class="text-2xl font-semibold text-white">Budget Boosters</h3>
+                <span class="ml-3 px-3 py-1 bg-green-500 text-white rounded-full text-xs font-bold">
+                    <i class="fas fa-wallet mr-1"></i>UNDER R80
+                </span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Budget Promo 1 -->
+                <div class="promo-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <img src="deep-fried-wings.jpg" alt="Chicken Wings" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold mb-1 text-white">Drip & Dip</h4>
+                        <p class="text-sm text-gray-600 mb-2">6 Wings + Dip</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-red-600 font-bold">R65</span>
+                            <button class="px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Budget Promo 2 -->
+                <div class="promo-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <img src="chip-dip.jpg" alt="Chips" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold mb-1 text-white">Dip-loma</h4>
+                        <p class="text-sm text-gray-600 mb-2">Large Chips + 2 Dips</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-red-600 font-bold">R45</span>
+                            <button class="px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Budget Promo 3 -->
+                <div class="promo-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <img src="double-cheese-burger.jpg" alt="Burger" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold mb-1 text-white">Burger Deal</h4>
+                        <p class="text-sm text-gray-600 mb-2">Double cheese Burger + drink</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-red-600 font-bold">R60</span>
+                            <button class="px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Budget Promo 4 -->
+                <div class="promo-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <img src="strips.jpg" alt="Chicken Strips" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold mb-1 text-white">Crust Issues</h4>
+                        <p class="text-sm text-gray-600 mb-2">7 Crusted strips + 2 Dips</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-red-600 font-bold">R75</span>
+                            <button class="px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Full Menu Section -->
+<section id="menu" class="py-12 bg-black">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-2 text-red-600">OUR FULL MENU</h2>
+        <p class="text-center text-gray-600 mb-8">Build your perfect meal with our variety of options</p>
+        
+        <!-- Menu Navigation -->
+        <div class="flex overflow-x-auto pb-4 mb-8 scrollbar-hide">
+            <div class="flex space-x-2">
+                <button onclick="filterMenu('all')" class="px-4 py-2 bg-red-600 text-white rounded-full font-semibold whitespace-nowrap">
+                    All Items
+                </button>
+                <button onclick="filterMenu('chicken')" class="px-4 py-2 bg-gray-200 text-white rounded-full font-semibold hover:bg-gray-300 transition whitespace-nowrap">
+                    <i class="fas fa-drumstick-bite mr-2"></i>Chicken
+                </button>
+                <button onclick="filterMenu('beef')" class="px-4 py-2 bg-gray-200 text-white rounded-full font-semibold hover:bg-gray-300 transition whitespace-nowrap">
+                    <i class="fas fa-hamburger mr-2"></i>Beef
+                </button>
+                <button onclick="filterMenu('pork')" class="px-4 py-2 bg-gray-200 text-white rounded-full font-semibold hover:bg-gray-300 transition whitespace-nowrap">
+                    <i class="fas fa-bacon mr-2"></i>Pork
+                </button>
+                <button onclick="filterMenu('fish')" class="px-4 py-2 bg-gray-200 text-white rounded-full font-semibold hover:bg-gray-300 transition whitespace-nowrap">
+                    <i class="fas fa-fish mr-2"></i>Fish
+                </button>
+                <button onclick="filterMenu('sides')" class="px-4 py-2 bg-gray-200 text-white rounded-full font-semibold hover:bg-gray-300 transition whitespace-nowrap">
+                    <i class="fas fa-utensils mr-2"></i>Sides
+                </button>
+                <button onclick="filterMenu('drinks')" class="px-4 py-2 bg-gray-200 text-white rounded-full font-semibold hover:bg-gray-300 transition whitespace-nowrap">
+                    <i class="fas fa-glass-whiskey mr-2"></i>Drinks
+                </button>
+            </div>
+        </div>
+        
+        <!-- Chicken Section -->
+        <div class="menu-category chicken-category mb-12">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-white">
+                <i class="fas fa-drumstick-bite text-red-600 mr-3"></i>
+                <span>Chicken Selection</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Chicken Item 1 -->
+                <div class="menu-item chicken p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">1/4 Chicken + Medium chips</h4>
+                        <p class="text-sm text-gray-600">Leg & thigh or breast & wing</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Spicy</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Mild</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R65</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chicken Item 2 -->
+                <div class="menu-item chicken p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">1/2 Chicken</h4>
+                        <p class="text-sm text-gray-600">Full half chicken - your choice of sides</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Spicy</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Mild</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R80</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chicken Item 3 -->
+                <div class="menu-item chicken p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Chicken Strips (3)</h4>
+                        <p class="text-sm text-gray-600">Crispy chicken strips with your choice of dip</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Peri-Peri</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">BBQ</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R50</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chicken Item 4 -->
+                <div class="menu-item chicken p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Chicken Wings (3)</h4>
+                        <p class="text-sm text-gray-600">Spicy or mild wings with ranch dip</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Crispy hot</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Dunked</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R35</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Beef Section -->
+        <div class="menu-category beef-category mb-12">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-white">
+                <i class="fas fa-hamburger text-red-600 mr-3"></i>
+                <span>Beef Selection</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Beef Item 1 -->
+                <div class="menu-item beef p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Classic Beef Burger</h4>
+                        <p class="text-sm text-gray-600">100% beef patty with cheese, lettuce & sauce</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Cheese</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Bacon</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R45</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Beef Item 2 -->
+                <div class="menu-item beef p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Double Beef Burger</h4>
+                        <p class="text-sm text-gray-600">Two 100% beef patties with all the extras</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Double</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Cheese</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R75</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Beef Item 3 -->
+                <div class="menu-item beef p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Beef Ribs (3)</h4>
+                        <p class="text-sm text-gray-600">Tender beef ribs with BBQ sauce</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">BBQ</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Spicy</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R95</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pork Section -->
+        <div class="menu-category pork-category mb-12">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-white">
+                <i class="fas fa-bacon text-red-600 mr-3"></i>
+                <span>Pork Selection</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Pork Item 1 -->
+                <div class="menu-item pork p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Pork Ribs (4)</h4>
+                        <p class="text-sm text-gray-600">Slow-cooked pork ribs with your choice of sauce</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">BBQ</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Peri-Peri</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R85</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Pork Item 2 -->
+                <div class="menu-item pork p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Bacon Cheese Burger</h4>
+                        <p class="text-sm text-gray-600">Beef patty with crispy bacon and cheese</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Bacon</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Cheese</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R65</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fish Section -->
+        <div class="menu-category fish-category mb-12">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-white">
+                <i class="fas fa-fish text-red-600 mr-3"></i>
+                <span>Fish Selection</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Fish Item 1 -->
+                <div class="menu-item fish p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Fish Burger</h4>
+                        <p class="text-sm text-gray-600">Crispy fish fillet with tartar sauce</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Tartar</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Lemon</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R55</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Fish Item 2 -->
+                <div class="menu-item fish p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Fish & Chips</h4>
+                        <p class="text-sm text-gray-600">Hake fillet with chips and tartar sauce</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Hake</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Chips</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-red-600">R75</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sides Section -->
+        <div class="menu-category sides-category mb-12">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-white">
+                <i class="fas fa-utensils text-red-600 mr-3"></i>
+                <span>Sides</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Side 1 -->
+                <div class="menu-item sides p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Chips</h4>
+                        <p class="text-sm text-gray-600">Golden crispy fries</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Regular</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Large</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R25</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Side 2 -->
+                <div class="menu-item sides p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Mash & Gravy</h4>
+                        <p class="text-sm text-gray-600">Creamy mashed potatoes with rich gravy</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Regular</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Large</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R25</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Side 3 -->
+                <div class="menu-item sides p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Onion Rings</h4>
+                        <p class="text-sm text-gray-600">Crispy battered onion rings</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">6 Pieces</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">10 Pieces</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R30</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Side 4 -->
+                <div class="menu-item sides p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Coleslaw</h4>
+                        <p class="text-sm text-gray-600">Fresh cabbage and carrot salad</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Regular</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Large</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R25</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Side 5 -->
+                <div class="menu-item sides p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Garlic Bread</h4>
+                        <p class="text-sm text-gray-600">Toasted bread with garlic butter</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">2 Slices</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">4 Slices</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R20</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Side 6 -->
+                <div class="menu-item sides p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Salad</h4>
+                        <p class="text-sm text-gray-600">Fresh garden salad with dressing</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Three bean</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Chakalaka</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R35</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Drinks Section -->
+        <div class="menu-category drinks-category">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-white">
+                <i class="fas fa-glass-whiskey text-red-600 mr-3"></i>
+                <span>Drinks</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Drink 1 -->
+                <div class="menu-item drinks p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Soft Drinks</h4>
+                        <p class="text-sm text-gray-600">Coke, Fanta, Sprite, Cream Soda</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">330ml</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">500ml</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R13 & R20</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Drink 2 -->
+                <div class="menu-item drinks p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Milkshakes</h4>
+                        <p class="text-sm text-gray-600">Vanilla, Chocolate, Strawberry</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Regular</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Large</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R30 & R50</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Drink 3 -->
+                <div class="menu-item drinks p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Slushies</h4>
+                        <p class="text-sm text-gray-600">Blue Raspberry, Cherry, Grape, Lime</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Regular</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">Large</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R20 & R35</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Drink 4 -->
+                <div class="menu-item drinks p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Bottled Water</h4>
+                        <p class="text-sm text-gray-600">Still or sparkling mineral water</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">500ml</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">1L</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R11 & R20</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Drink 5 -->
+                <div class="menu-item drinks p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Fruit Juice</h4>
+                        <p class="text-sm text-gray-600">Orange, Apple, Grape, Tropical</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">250ml</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">500ml</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R18 & R25</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Drink 6 -->
+                <div class="menu-item drinks p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-white">Iced Tea</h4>
+                        <p class="text-sm text-gray-600">Lemon, Peach, Raspberry</p>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">330ml</span>
+                            <span class="px-2 py-1 bg-gray-100 text-white rounded-full text-xs">500ml</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">From</span>
+                        <span class="font-bold text-red-600">R15 & R25</span>
+                        <button class="mt-2 px-3 py-1 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">CHICKEN &?</h3>
+                <p class="text-gray-400">Discover your perfect meal combo with our variety of delicious options.</p>
+                <div class="mt-4 flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                    <li><a href="#promos" class="text-gray-400 hover:text-white transition">Promos</a></li>
+                    <li><a href="#menu" class="text-gray-400 hover:text-white transition">Menu</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4">Contact Us</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+                        <span class="text-gray-400">314 Imam haron Road, Cape Town</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+                        <span class="text-gray-400">021 354 7845</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                        <span class="text-gray-400">info@chickenandwhat?.com</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4">Download Our App</h4>
+                <div class="space-y-4">
+                    <a href="#" class="block">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1200px-Download_on_the_App_Store_Badge.svg.png" 
+                             alt="App Store" 
+                             class="h-10">
+                    </a>
+                    <a href="#" class="block">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1200px-Google_Play_Store_badge_EN.svg.png" 
+                             alt="Play Store" 
+                             class="h-10">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Chicken &?. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating Order Button (Mobile) -->
+<div class="md:hidden fixed bottom-6 right-6">
+    <button onclick="openCart()" class="w-16 h-16 bg-red-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-red-700 transition relative">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <span id="floatingCartCount" class="floating-cart-count">0</span>
+    </button>
+</div>
+
+<!-- CART MODAL -->
+<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 p-6 rounded-lg shadow-xl w-full max-w-md text-white">
+        <h2 class="text-2xl font-bold mb-4">Your Cart</h2>
+        <div id="cartItems" class="space-y-4 max-h-80 overflow-y-auto"></div>
+        <div class="mt-4 flex justify-between font-bold">
+            <span>Total:</span>
+            <span id="cartTotal">R0</span>
+        </div>
+        <div class="mt-6 flex justify-between space-x-2">
+            <button onclick="closeCart()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded transition">Close</button>
+            <button onclick="showCheckout()" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded transition">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 p-6 rounded-lg shadow-xl w-full max-w-md text-white">
+        <h2 class="text-2xl font-bold mb-4">Checkout</h2>
+        <form onsubmit="return handlePayment(event)">
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Card Number</label>
+                <div class="relative">
+                    <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19"
+                           class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-red-600" required />
+                    <i class="fas fa-credit-card absolute right-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Expiry Date</label>
+                    <input type="text" name="expiry" placeholder="MM/YY" class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded" required />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">CVV</label>
+                    <input type="text" name="cvv" placeholder="123" maxlength="3" class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded" required />
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Name on Card</label>
+                <input type="text" name="name" placeholder="John Doe" class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded" required />
+            </div>
+            <div class="flex justify-between">
+                <button type="button" onclick="hideCheckout()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded transition">Back</button>
+                <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded transition">Pay Now</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 p-6 rounded-lg shadow-xl w-full max-w-md text-white text-center">
+        <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
+        <h2 class="text-2xl font-bold mb-2">Payment Successful!</h2>
+        <p class="text-gray-400 mb-6">Thank you for your order.</p>
+        <button onclick="closeSuccess()" class="px-6 py-2 bg-red-600 rounded hover:bg-red-700 transition">Continue Shopping</button>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+
+    function addToCart(itemName, price) {
+        cart.push({ name: itemName, price });
+        updateCart();
+    }
+
+    function updateCart() {
+        const count = cart.length;
+        document.getElementById("cartCount").innerText = count;
+        document.getElementById("floatingCartCount").innerText = count;
+
+        const cartItemsDiv = document.getElementById("cartItems");
+        cartItemsDiv.innerHTML = "";
+
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            cartItemsDiv.innerHTML += `
+                <div class="flex justify-between border-b border-gray-700 pb-2">
+                    <span>${item.name}</span>
+                    <span>R${item.price}</span>
+                </div>`;
+        });
+
+        document.getElementById("cartTotal").innerText = `R${total}`;
+    }
+
+    function openCart() {
+        updateCart();
+        document.getElementById("cartModal").classList.remove("hidden");
+    }
+
+    function closeCart() {
+        document.getElementById("cartModal").classList.add("hidden");
+    }
+
+    function showCheckout() {
+        closeCart();
+        document.getElementById("checkoutModal").classList.remove("hidden");
+    }
+
+    function hideCheckout() {
+        document.getElementById("checkoutModal").classList.add("hidden");
+    }
+
+    function handlePayment(e) {
+        e.preventDefault();
+        hideCheckout();
+        document.getElementById("successModal").classList.remove("hidden");
+        cart = [];
+        updateCart();
+        return false;
+    }
+
+    function closeSuccess() {
+        document.getElementById("successModal").classList.add("hidden");
+    }
+
+    // Simple menu filtering function
+    function filterMenu(category) {
+        // Reset all buttons
+        document.querySelectorAll('.flex button').forEach(btn => {
+            btn.classList.remove('bg-red-600', 'text-white');
+            btn.classList.add('bg-gray-200', 'text-white');
+        });
+        
+        // Highlight selected button
+        event.target.classList.remove('bg-gray-200', 'text-white');
+        event.target.classList.add('bg-red-600', 'text-white');
+        
+        // Show all items if 'all' is selected
+        if (category === 'all') {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.style.display = 'flex';
+            });
+            return;
+        }
+        
+        // Hide all items first
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.style.display = 'none';
+        });
+        
+        // Show items of selected category
+        document.querySelectorAll(`.menu-item.${category}`).forEach(item => {
+            item.style.display = 'flex';
+        });
+        
+        // Scroll to menu section
+        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Update buttons to support add to cart
+    document.querySelectorAll('.menu-item button, .promo-card button').forEach(button => {
+        button.onclick = () => {
+            const parent = button.closest('.menu-item, .promo-card');
+            const title = parent.querySelector('h4, h3')?.innerText || 'Item';
+            const priceText = parent.querySelector('.text-red-600')?.innerText.replace(/[^0-9]/g, '');
+            const price = parseInt(priceText) || 0;
+            if (price > 0) addToCart(title, price);
+        };
+    });
+</script>
+
+</body>
+</html>
